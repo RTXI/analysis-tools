@@ -22,6 +22,7 @@ function rtxifig = rtxibrowse(rtxifig,fname,trialNum)
 %
 % AUTHOR: Risa Lin
 % DATE:   10/31/2010
+% UPDATED: 10/10/2014 - Yogi Patel <yapatel@gatech.edu>
 
 if (isscalar(rtxifig) && ishandle(rtxifig))  % re-use existing figure, needs 3 arguments
     if nargin == 3
@@ -43,7 +44,7 @@ else
 end
 
 fileinfo = rtxi_read(fname);
-figname = ['RTXI HDF5 Browser v0.1 | ',fname,' | Trial ',num2str(trialNum),'/',num2str(fileinfo.numTrials)];
+figname = ['RTXI HDF5 Browser v0.2 | ',fname,' | Trial ',num2str(trialNum),'/',num2str(fileinfo.numTrials)];
 set(rtxifig,'Name',figname);
 
 trial = getTrial(fname,trialNum);

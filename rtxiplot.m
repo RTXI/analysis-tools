@@ -206,7 +206,6 @@ fig = figure( ...
 
 try
   % try to use uisplitter if available
-  
   [leftpanel,rightpanel] = uisplitpane(fig,'DividerWidth', 2,'DividerLocation', 0.25,'Orientation','hor');
   [boxpanel,plotpanel] = uisplitpane(rightpanel,'DividerWidth',2,'DividerLocation',0.25,'Orientation','hor');
   [topbox,bottombox] = uisplitpane(boxpanel,'DividerWidth',2,'DividerLocation',0.5,'Orientation','vert');
