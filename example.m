@@ -1,7 +1,7 @@
 %% get basic file info
 clear; clc
 
-fname = 'testGwaveform.h5';
+fname = '/home/yapatel/Dropbox/pulsetest.h5';
 
 fileinfo = rtxi_read(fname);
 trial1 = getTrial(fname,1);
