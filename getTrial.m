@@ -86,7 +86,8 @@ trial.numChannels = size( trial.data, 2 );
 
 % Names of Channels
 for i=1:trial.numChannels
-    trial.channels{i} = h5read( fname, [path '/Synchronous Data/Channel ' num2str(i) ' Name'] );
+    %trial.channels{i} = h5read( fname, [path '/Synchronous Data/Channel ' num2str(i) ' Name'] );
+    trial.channels{i} = h5read( fname, fileinfo.GroupHierarchy.Groups(trialNum).Groups(3).Datasets(i).Name );
 end
 
 % Number of Samples
