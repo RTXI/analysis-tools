@@ -1,14 +1,13 @@
 %% get basic file info
 clear; clc
 
-fname = '/home/yapatel/Dropbox/pulsetest.h5';
+fname = 'testGwaveform.h5';
 
 fileinfo = rtxi_read(fname);
 trial1 = getTrial(fname,1);
-% trial2 = getTrial(fname,2);
-% trial3 = getTrial(fname,3);
-%printParameters(fname,1);
-
+%trial2 = getTrial(fname,2);
+%trial3 = getTrial(fname,3);
+printParameters(fname,1);
 
 %% browse a HDF5 file starting with a particular trial
 clc
@@ -24,13 +23,14 @@ rtxifig = rtxibrowse(rtxifig,fname,2);
 
 %% add some data to the hdf5 file
 
+% THIS IS BROKEN! -Ansel
+
 file = H5F.open(fname,'H5F_ACC_RDWR', 'H5P_DEFAULT');
 
 % add a dataset
 dset = single(rand(10,10));
 dset_details.Location = '/Trial1';
 dset_details.Name = 'Random';
-
 
 hdf5write(fname, dset_details, dset, 'WriteMode', 'append')
 

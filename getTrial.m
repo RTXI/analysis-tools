@@ -80,15 +80,28 @@ trial.timestart = convertTime(trial.timestart);
 trial.timestop = convertTime(trial.timestop);
 
 %% Channel Data
-trial.data = h5read( fname, [path '/Synchronous Data/Channel Data'] )';
+try
+    trial.data = h5read( fname, [path '/Synchronous Data/Channel Data'] )';
+catch HELLO
+    msg = ['Learn to spell...']; % it's "Synchronous", not "Syncronous"
+    % add something to check the error type... -Ansel
+    trial.data = h5read( fname, [path '/Syncronous Data/Channel Data'] )';
+end
+
 % Number of Channels
 trial.numChannels = size( trial.data, 2 );
+%trial.numChannels = size(fileinfo.GroupHierarchy.Groups(trialNum).Groups(3).Datasets, 2) - 1;
+trial.numChannels
 
 % Names of Channels
 for i=1:trial.numChannels
     %trial.channels{i} = h5read( fname, [path '/Synchronous Data/Channel ' num2str(i) ' Name'] );
     trial.channels{i} = h5read( fname, fileinfo.GroupHierarchy.Groups(trialNum).Groups(3).Datasets(i).Name );
 end
+trial.channels
+
+%trial.data = h5read( fname, fileinfo.GroupHierarchy.Groups(trialNum).Groups(3).Datasets(trial.numChannels+1).Name );
+%fileinfo.GroupHierarchy.Groups(trialNum).Groups(3).Datasets(trial.numChannels+1).Name
 
 % Number of Samples
 numsamples = size( trial.data, 1 );
