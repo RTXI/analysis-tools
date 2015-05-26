@@ -23,7 +23,7 @@ rtxifig = rtxibrowse(rtxifig,fname,2);
 
 %% add some data to the hdf5 file
 
-% THIS IS BROKEN! -Ansel
+% Running this section twice will produce an error. 
 
 file = H5F.open(fname,'H5F_ACC_RDWR', 'H5P_DEFAULT');
 
