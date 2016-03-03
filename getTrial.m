@@ -86,8 +86,9 @@ end
 try
     trial.data = h5read( fname, [path '/Synchronous Data/Channel Data'] )';
 catch HELLO
-    msg = ['Learn to spell...']; % it's "Synchronous", not "Syncronous"
-    % add something to check the error type... -Ansel
+	 % Old RTXI versions spelled "Synchronous" as "Syncronous"
+    msg = ['/Synchronous Data/Channel Data is missing. Trying /Syncronous Data instead']; 
+    % Add something to check the error type... -Ansel
     trial.data = h5read( fname, [path '/Syncronous Data/Channel Data'] )';
 end
 
