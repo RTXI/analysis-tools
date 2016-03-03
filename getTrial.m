@@ -73,12 +73,15 @@ trial.exp_dt = double( h5read( fname, [path '/Period (ns)'] ) ) * 1e-9;
 trial.data_dt = trial.exp_dt * ds;
 % Time start
 trial.timestart = double( h5read( fname, [path '/Timestamp Start (ns)'] ) ) * 1e-9;
-% Time stop
-trial.timestop = double( h5read( fname, [path '/Timestamp Stop (ns)'] ) ) * 1e-9;
-% Time Conversion
 trial.timestart = convertTime(trial.timestart);
-trial.timestop = convertTime(trial.timestop);
-
+% Time stop
+try % try to get end timestamp (it will be missing if RTXI crashed while recording)
+    trial.timestop = double( h5read( fname, [path '/Timestamp Stop (ns)'] ) ) * 1e-9;
+    trial.timestop = convertTime(trial.timestop);
+catch
+    warning('Timestamp Stop (ns) is mising.');
+	 trial.timestop = convertTime(0);
+end
 %% Channel Data
 try
     trial.data = h5read( fname, [path '/Synchronous Data/Channel Data'] )';
